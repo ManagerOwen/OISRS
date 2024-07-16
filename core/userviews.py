@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponse
-from tasapp.models import Tech Reg,Specialization,CustomUser,Hire,Page
+from tasapp.models import TechReg,Specialization,CustomUser,Hire,Page
 import random
 from datetime import datetime
 from django.contrib import messages

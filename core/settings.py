@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tecaspythondb',
+        'NAME': 'techpythondb',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -101,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC+3'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
