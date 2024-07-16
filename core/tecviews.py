@@ -102,7 +102,7 @@ def View_Hire(request):
     return render(request, 'tec/view_Hire.html', context)
 
 
-def customer_Hire_Details(request,id):
+def Customer_Hire_Details(request,id):
     customerdetails=Hire.objects.filter(id=id)
     context={'customerdetails':customerdetails
 
