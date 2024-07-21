@@ -29,7 +29,7 @@ def doLogin(request):
             if user_type == '1':
                  return redirect('admin_home')
             elif user_type == '2':
-                 return redirect('doctor_home')
+                 return redirect('admin_home')
             elif user_type == '3':
                 return HttpResponse("This is User panel")
             

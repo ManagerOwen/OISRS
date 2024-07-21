@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('base/', views.BASE, name='base'),
     path('login', views.LOGIN, name='login'),
     
@@ -35,15 +35,16 @@ urlpatterns = [
     path('techSignup/', tecviews.TECSIGNUP, name='techSignup'),
     path('Tech/tecHome', tecviews.TECHHOME, name='Tech_home'),
     path('Tech/ViewHire', tecviews.View_Hire, name='view_hire'),
-    path('TechCustomertHireDetails/<str:id>', tecviews.Customer_Hire_Details, name='customerthiredetails'),
-    path('HireDetailsRemark/Update', tecviews.Customer_Hire_Details_Remark, name='customert_hire_details_remark'),
-     path('TechCustomertApprovedHire', tecviews.Customer_Approved_Hire, name='customertapprovedhire'),
-     path('TechCustomertCancelledHire', tecviews.Customer_Cancelled_Hire, name='customertcancelledhire'),
-     path('TechCustomertNewHire', tecviews.Customer_New_Hire, name='customertnewhire'),
-     path('TechCustomertListApprovedHire', tecviews.Customer_List_Approved_Hire, name='customertlisthire'),
+    path('TechCustomertHireDetails/<str:id>', tecviews.Customer_Hire_Details, name='customerhiredetails'),
+    path('HireDetailsRemark/Update', tecviews.Customer_Hire_Details_Remark, name='customer_hire_details_remark'),
+     path('TechCustomerApprovedHire', tecviews.Customer_Approved_Hire, name='customerapprovedhire'),
+     path('TechCustomerCancelledHire', tecviews.Customer_Cancelled_Hire, name='customercancelledhire'),
+     path('TechCustomerNewHire', tecviews.Customer_New_Hire, name='customernewhire'),
+     path('TechCustomerListApprovedHire', tecviews.Customer_List_Approved_Hire, name='customerlisthire'),
+     path('TechHireDetails/<str:id>', tecviews.View_Hire, name='viewtechdetails'),
      path('TechHireList/<str:id>', tecviews.TechHireList, name='techhirelist'),
-     path('CustomertHirePrescription', tecviews.Customer_Hire_Prescription, name='customerthireprescription'),
-      path('CustomertHireCompleted', tecviews.Customer_Hire_Completed, name='customerthirecompleted'),
+     path('CustomerHirePrescription', tecviews.Customer_Hire_Prescription, name='customerhireprescription'),
+      path('CustomerHireCompleted', tecviews.Customer_Hire_Completed, name='customerhirecompleted'),
       path('SearchHire', tecviews.Search_Hire, name='search_hire'),
       path('BetweenDateReport', tecviews.Between_Date_Report, name='between_date_report'),
 

@@ -4,7 +4,7 @@ import random
 from datetime import datetime
 from django.contrib import messages
 def USERBASE(request):
-    
+    context={}
     return render(request, 'userbase.html',context)
 
 def Index(request):

@@ -8,8 +8,7 @@ class CustomUser(AbstractUser):
         
     }
     user_type = models.CharField(choices=USER,max_length=50,default=1)
-
-    profile_pic = models.ImageField(upload_to='media/profile_pic')
+    profile_pic = models.ImageField(upload_to='media/profile_pic', blank=True, null=True)
 
 class Specialization(models.Model):
     sname = models.CharField(max_length=200)
@@ -23,7 +22,6 @@ class Specialization(models.Model):
 
 class TechReg(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
-   
     mobilenumber = models.CharField(max_length=11)
     specialization_id = models.ForeignKey(Specialization, on_delete=models.CASCADE)
     regdate_at = models.DateTimeField(auto_now_add=True)

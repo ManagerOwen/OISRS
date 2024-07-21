@@ -20,10 +20,10 @@ def TECSIGNUP(request):
 
         if CustomUser.objects.filter(email=email).exists():
             messages.warning(request,'Email already exist')
-            return redirect('tecsignup')
+            return redirect('techSignup')
         if CustomUser.objects.filter(username=username).exists():
             messages.warning(request,'Username already exist')
-            return redirect('tecsignup')
+            return redirect('techSignup')
         else:
             user = CustomUser(
                first_name=first_name,
@@ -45,7 +45,7 @@ def TECSIGNUP(request):
             )
             tech.save()            
             messages.success(request,'Signup Successfully')
-            return redirect('tecsignup')
+            return redirect('tecSignup')
     
     context = {
         'specialization':specialization
@@ -78,7 +78,7 @@ def TECHHOME(request):
 def View_Hire(request):
     try:
         tech_admin = request.user
-        tech_reg = techReg.objects.get(admin=tech_admin)
+        tech_reg = TechReg.objects.get(admin=tech_admin)
         view_Hire = Hire.objects.filter(tech_id=tech_reg)
         
 
@@ -122,6 +122,9 @@ def Customer_Hire_Details_Remark(request):
         customeraptdet.save()
         messages.success(request,"Status Update successfully")
         return redirect('view_Hire')
+    context ={
+        
+    }
     return render(request,'tec/view_Hire.html',context)
 
 def Customer_Approved_Hire(request):
@@ -173,6 +176,7 @@ def Customer_Hire_Prescription(request):
         customeraptdet.save()
         messages.success(request,"Status Update successfully")
         return redirect('view_Hire')
+    context={}
     return render(request,'tec/customer_list_app_Hire.html',context)
 
 
@@ -211,7 +215,7 @@ def Between_Date_Report(request):
             start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
             end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
         except ValueError:
-            return render(request, 'tec/between-dates-report.html', {'visitor': visitor, 'error_message': 'Invalid date format'})
+            return render(request, 'tec/between-dates-report.html', {'error_message': 'Invalid date format'})
 
         # Filter Hire between the given date range
         customer = Hire.objects.filter(created_at__range=(start_date, end_date)) & Hire.objects.filter(tech_id=tech_reg)
