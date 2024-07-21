@@ -7,10 +7,10 @@
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">Appointments</h3>
+                <h3 class="page-title">Hire</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">View Aappointment</li>
+                    <li class="breadcrumb-item active">View Hire</li>
                 </ul>
             </div>
 
@@ -48,26 +48,26 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-center mb-0 datatable">
                             <thead>
-                                {% if patientdetails %}
+                                {% if customerdetails %}
                                 <tr>
 
-                                    <th>Appointment Number</th>
-                                    <th>Patient Name</th>
-                                    <th>Date of Appointment</th>
-                                    <th>Time of Appointment</th>
+                                    <th>Hire Number</th>
+                                    <th>Customer Name</th>
+                                    <th>Date of Hire</th>
+                                    <th>Time of Hire</th>
                                     <th>Creation Date</th>
                                     <th>Status</th>
                                     <th class="text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for i in patientdetails %}
+                                {% for i in customerdetails %}
                                 <tr>
 
-                                    <td>{{i.appointmentnumber}}</td>
+                                    <td>{{i.hirenumber}}</td>
                                     <td>{{i.fullname}}</td>
-                                    <td>{{i.date_of_appointment}}</td>
-                                    <td>{{i.time_of_appointment}}</td>
+                                    <td>{{i.date_of_hire}}</td>
+                                    <td>{{i.time_of_hire}}</td>
                                     <td>{{i.created_at}}</td>
                                     {% if i.status == '0' %}
                                     <td>Not Updated Yet</td>
@@ -75,7 +75,7 @@
                                     <td>{{ i.status}}</td>{% endif %}
                                     <td class="text-right">
                                         <div class="actions">
-                                            <a href="{% url 'viewpatientdetails' i.id %}">
+                                            <a href="{% url 'viewcustomerdetails' i.id %}">
                                                 <i class="btn btn-primary btn-block">View</i>
                                             </a>
 
