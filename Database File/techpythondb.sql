@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2024 at 06:09 PM
+-- Generation Time: Jul 22, 2024 at 08:47 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -198,7 +198,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (17, 'admin', '0002_logentry_remove_auto_add', '2024-07-19 07:47:57.443011'),
 (18, 'admin', '0003_logentry_add_action_flag_choices', '2024-07-19 07:47:57.670184'),
 (19, 'sessions', '0001_initial', '2024-07-19 07:47:59.497318'),
-(20, 'tasapp', '0002_alter_customuser_profile_pic_and_more', '2024-07-21 15:57:13.771458');
+(20, 'tasapp', '0002_alter_customuser_profile_pic_and_more', '2024-07-21 15:57:13.771458'),
+(21, 'tasapp', '0003_rename_doctor_id_hire_tech_id_and_more', '2024-07-22 18:42:03.393917');
 
 -- --------------------------------------------------------
 
@@ -211,6 +212,16 @@ CREATE TABLE `django_session` (
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('0a5luj0kvbesfibg2fexvbv72zl73os6', 'e30:1sVx2F:QlpoX8ZNTIHzp1M_nkhnwfcyfyUufTx7o_whzTc-070', '2024-08-05 17:41:19.388486'),
+('0w7qvngdu9wn6wkgx65socfg3fuvdj82', 'e30:1sVx5r:-TSKdoT-OH8uKZtHKyXoWWkFSM3t8DF6L-Jp4Qopy6A', '2024-08-05 17:45:03.503202'),
+('8pw0s365ivof22ykse3ojbkw4qilafmn', 'e30:1sVx3w:tdKzdXtYKHVdqn4zpy9sRSW1fHWTAZFFG8fNCkk8udI', '2024-08-05 17:43:04.867621'),
+('ufpl49z8c0zxlld5k24uysud7pu61mqz', 'e30:1sVx39:QfttGQvx_WZ0eesMiAt-mQrWhA9FZsbQcwMacRQ0eyA', '2024-08-05 17:42:15.918220');
 
 -- --------------------------------------------------------
 
@@ -239,8 +250,8 @@ CREATE TABLE `tasapp_customuser` (
 --
 
 INSERT INTO `tasapp_customuser` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `user_type`, `profile_pic`) VALUES
-(1, 'pbkdf2_sha256$600000$FD2kEenFHWgfssf6QVmbem$3O8x2UPcD7oFvfxQC1B3rwZpBXH8JIh1SADyCpqW2TE=', '2024-07-21 15:48:23.058099', 1, 'owen', '', '', 'owen@owen.com', 1, 1, '2024-07-21 15:45:50.624977', '1', 'media/profile_pic/18U_Standing_Rack_Cabinet_MHplzTi.png'),
-(2, 'pbkdf2_sha256$600000$LNeW4CacF9KgEWMphejeg8$9oubVnUsrWySjVEiAvYRCCXVP/LrWxSZ7iBT9UD657s=', NULL, 0, 'test', 'test', 'testing', 'testuser@gmail.com', 0, 1, '2024-07-21 15:58:50.526303', '2', 'media/profile_pic/18U_Standing_Rack_Cabinet_MHplzTi.png');
+(1, 'pbkdf2_sha256$600000$FD2kEenFHWgfssf6QVmbem$3O8x2UPcD7oFvfxQC1B3rwZpBXH8JIh1SADyCpqW2TE=', '2024-07-22 18:19:42.967297', 1, 'owen', '', '', 'owen@owen.com', 1, 1, '2024-07-21 15:45:50.624977', '1', 'media/profile_pic/18U_Standing_Rack_Cabinet_MHplzTi.png'),
+(2, 'pbkdf2_sha256$600000$LNeW4CacF9KgEWMphejeg8$9oubVnUsrWySjVEiAvYRCCXVP/LrWxSZ7iBT9UD657s=', '2024-07-22 18:46:05.308021', 0, 'test', 'test', 'testing', 'testuser@gmail.com', 0, 1, '2024-07-21 15:58:50.526303', '2', 'media/profile_pic/18U_Standing_Rack_Cabinet_MHplzTi.png');
 
 -- --------------------------------------------------------
 
@@ -287,14 +298,14 @@ CREATE TABLE `tasapp_hire` (
   `recommendedtest` longtext NOT NULL,
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL,
-  `doctor_id_id` bigint(20) NOT NULL
+  `tech_id_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tasapp_hire`
 --
 
-INSERT INTO `tasapp_hire` (`id`, `hirenumber`, `fullname`, `mobilenumber`, `email`, `date_of_hire`, `time_of_hire`, `additional_msg`, `remark`, `status`, `prescription`, `recommendedtest`, `created_at`, `updated_at`, `doctor_id_id`) VALUES
+INSERT INTO `tasapp_hire` (`id`, `hirenumber`, `fullname`, `mobilenumber`, `email`, `date_of_hire`, `time_of_hire`, `additional_msg`, `remark`, `status`, `prescription`, `recommendedtest`, `created_at`, `updated_at`, `tech_id_id`) VALUES
 (1, 4, 'Chris', '0782750750', 'chris@gmail.com', '19/07/2024', '6pm', 'afafdsfsd', 'werwr', 'ewrwre', 'ewrwer', 'werwer', '2024-07-21 15:54:05.595909', '2024-07-21 15:54:05.595909', 1);
 
 -- --------------------------------------------------------
@@ -449,7 +460,7 @@ ALTER TABLE `tasapp_customuser_user_permissions`
 --
 ALTER TABLE `tasapp_hire`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `tasapp_hire_doctor_id_id_c6a44dfd_fk_tasapp_techreg_id` (`doctor_id_id`);
+  ADD KEY `tasapp_hire_tech_id_id_510970c8_fk_tasapp_techreg_id` (`tech_id_id`);
 
 --
 -- Indexes for table `tasapp_page`
@@ -509,7 +520,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tasapp_customuser`
@@ -595,7 +606,7 @@ ALTER TABLE `tasapp_customuser_user_permissions`
 -- Constraints for table `tasapp_hire`
 --
 ALTER TABLE `tasapp_hire`
-  ADD CONSTRAINT `tasapp_hire_doctor_id_id_c6a44dfd_fk_tasapp_techreg_id` FOREIGN KEY (`doctor_id_id`) REFERENCES `tasapp_techreg` (`id`);
+  ADD CONSTRAINT `tasapp_hire_tech_id_id_510970c8_fk_tasapp_techreg_id` FOREIGN KEY (`tech_id_id`) REFERENCES `tasapp_techreg` (`id`);
 
 --
 -- Constraints for table `tasapp_techreg`
