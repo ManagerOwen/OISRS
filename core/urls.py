@@ -33,7 +33,7 @@ urlpatterns = [
 
     # # This is Tech Panel
     path('techSignup/', tecviews.TECSIGNUP, name='techSignup'),
-    path('Tech/tecHome', tecviews.TECHHOME, name='Tech_home'),
+    path('Tech/tecHome', tecviews.TECHHOME, name='tech_home'),
     path('Tech/ViewHire', tecviews.View_Hire, name='view_hire'),
     path('TechCustomertHireDetails/<str:id>', tecviews.Customer_Hire_Details, name='customerhiredetails'),
     path('HireDetailsRemark/Update', tecviews.Customer_Hire_Details_Remark, name='customer_hire_details_remark'),

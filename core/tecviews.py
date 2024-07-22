@@ -194,7 +194,7 @@ def Search_Hire(request):
         query = request.GET.get('query', '')
         if query:
             # Filter records where fullname or Hire Number contains the query
-            customer = Hire.objects.filter(fullname__icontains=query) | Hire.objects.filter(Hirenumber__icontains=query) & Hire.objects.filter(doctor_id=tech_reg)
+            customer = Hire.objects.filter(fullname__icontains=query) | Hire.objects.filter(hirenumber__icontains=query) & Hire.objects.filter(doctor_id=tech_reg)
             messages.success(request, "Search against " + query)
             return render(request, 'tec/search-Hire.html', {'customer': customer, 'query': query})
         else:
