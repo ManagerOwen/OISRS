@@ -40,7 +40,7 @@ class Hire(models.Model):
     email = models.EmailField(max_length=100)
     date_of_hire = models.CharField(max_length=250)
     time_of_hire = models.CharField(max_length=250)
-    doctor_id = models.ForeignKey(TechReg, on_delete=models.CASCADE)
+    tech_id = models.ForeignKey(TechReg, on_delete=models.CASCADE)
     additional_msg = models.TextField(blank=True)
     remark = models.CharField(max_length=250,default=0)
     status = models.CharField(default=0,max_length=200)
