@@ -1,15 +1,17 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.decorators import login_required
-from tasapp.models import Specialization,TechReg,Hire,Page
+from tasapp.models import Specialization,TechReg,Hire,Page,CustomUser
 from django.contrib import messages
 from datetime import datetime
 
 @login_required(login_url='/')
 def ADMINHOME(request):
+    user = CustomUser.objects.all()
     tech_count = TechReg.objects.all().count
     specialization_count = Specialization.objects.all().count
     context = {
         'tech_count':tech_count,
+        'user': user,
         'specialization_count':specialization_count,
 
     } 
@@ -102,7 +104,7 @@ def Search_Tech(request):
         query = request.GET.get('query', '')
         if query:
             # Filter records where email or mobilenumber contains the query
-            searchdoc = TechReg.objects.filter(mobilenumber__icontains=query) | TechReg.objects.filter(admin__first_name__icontains=query) | techReg.objects.filter(admin__last_name__icontains=query)
+            searchdoc = TechReg.objects.filter(mobilenumber__icontains=query) | TechReg.objects.filter(admin__first_name__icontains=query) |TechReg.objects.filter(admin__last_name__icontains=query)
             messages.info(request, "Search against " + query)
             return render(request, 'admin/search-tech.html', {'searchdoc': searchdoc, 'query': query})
         else:

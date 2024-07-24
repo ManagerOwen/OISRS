@@ -81,7 +81,6 @@ def View_Hire(request):
         tech_reg = TechReg.objects.get(admin=tech_admin)
         view_Hire = Hire.objects.filter(tech_id=tech_reg)
         
-
         # Pagination
         paginator = Paginator(view_Hire, 5)  # Show 10 Hire per page
         page = request.GET.get('page')
@@ -102,16 +101,15 @@ def View_Hire(request):
     return render(request, 'tec/view_Hire.html', context)
 
 
-def Customer_Hire_Details(request,id):
-    customerdetails=Hire.objects.filter(id=id)
-    context={'customerdetails':customerdetails
+def Tech_Hire_Details(request,id):
+    tech_hire_details=Hire.objects.filter(id=id)
+    context={'tech_hire_details':tech_hire_details
 
     }
+    return render(request,'tec/tech_hire_details.html',context)
 
-    return render(request,'tec/customer_Hire_details.html',context)
 
-
-def Customer_Hire_Details_Remark(request):
+def Tech_Hire_Details_Remark(request):
     if request.method == 'POST':
         customer_id = request.POST.get('pat_id')
         remark = request.POST['remark']
@@ -121,71 +119,79 @@ def Customer_Hire_Details_Remark(request):
         customeraptdet.status = status
         customeraptdet.save()
         messages.success(request,"Status Update successfully")
-        return redirect('view_Hire')
+        return redirect('view_hire')
     context ={
         
     }
     return render(request,'tec/view_Hire.html',context)
 
-def Customer_Approved_Hire(request):
+def Tech_New_Hire(request):
     tech_admin = request.user
     tech_reg = TechReg.objects.get(admin=tech_admin)
-    customerdetails1 = Hire.objects.filter(status='Approved',tech_id=tech_reg)
-    context = {'customerdetails1': customerdetails1}
-    return render(request, 'tec/customer_app_Hire.html', context)
+    clientdetails = Hire.objects.filter(status='0',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'tec/new_hire.html', context)
 
-def Customer_Cancelled_Hire(request):
+def Tech_Approved_Hire(request):
     tech_admin = request.user
     tech_reg = TechReg.objects.get(admin=tech_admin)
-    customerdetails1 = Hire.objects.filter(status='Cancelled',tech_id=tech_reg)
-    context = {'customerdetails1': customerdetails1}
-    return render(request, 'tec/customer_app_Hire.html', context)
+    clientdetails = Hire.objects.filter(status='approved',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'tec/approved_hire.html', context)
 
-def Customer_New_Hire(request):
+def All_Clients(request):
     tech_admin = request.user
     tech_reg = TechReg.objects.get(admin=tech_admin)
-    customerdetails1 = Hire.objects.filter(status='0',tech_id=tech_reg)
-    context = {'customerdetails1': customerdetails1}
-    return render(request, 'tec/customer_app_Hire.html', context)
+    clientdetails = Hire.objects.filter(tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'tec/clientlist.html', context)
 
-def Customer_List_Approved_Hire(request):
+def Tech_Cancelled_Hire(request):
     tech_admin = request.user
     tech_reg = TechReg.objects.get(admin=tech_admin)
-    customerdetails1 = Hire.objects.filter(status='Approved',tech_id=tech_reg)
-    context = {'customerdetails1': customerdetails1}
-    return render(request, 'tec/customer_list_app_Hire.html', context)
+    clientdetails = Hire.objects.filter(status='Cancelled',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'tec/cancelled_hire.html', context)
+
+def Tech_All_Hire(request):
+    tech_admin = request.user
+    tech_reg = TechReg.objects.get(admin=tech_admin)
+    clientdetails = Hire.objects.filter(tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'tec/all_hire.html', context)
+
+def Tech_Hire_Completed(request):
+    tech_admin = request.user
+    tech_reg = TechReg.objects.get(admin=tech_admin)
+    clientdetails = Hire.objects.filter(status='Completed',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'tec/completed_hire.html', context)
+
 
 def TechHireList(request,id):
-    customerdetails=Hire.objects.filter(id=id)
-    context={'customerdetails':customerdetails
+    clientdetails=Hire.objects.filter(id=id)
+    context={'clientdetails':clientdetails
 
     }
 
     return render(request,'tec/tech_Hire_list_details.html',context)
 
-def Customer_Hire_Prescription(request):
+def Tech_Hire_Description(request):
     if request.method == 'POST':
         customer_id = request.POST.get('pat_id')
-        prescription = request.POST['prescription']
-        recommendedtest = request.POST['recommendedtest']
+        description = request.POST['description']
+        recommendedtest = request.POST['recommendedrepair']
         status = request.POST['status']
         customeraptdet = Hire.objects.get(id=customer_id)
-        customeraptdet.prescription = prescription
+        customeraptdet.prescription = description
         customeraptdet.recommendedtest = recommendedtest
         customeraptdet.status = status
         customeraptdet.save()
         messages.success(request,"Status Update successfully")
-        return redirect('view_Hire')
+        return redirect('view_hire')
     context={}
-    return render(request,'tec/customer_list_app_Hire.html',context)
+    return render(request,'tec/customer_list_app_hire.html',context)
 
-
-def Customer_Hire_Completed(request):
-    tech_admin = request.user
-    tech_reg = TechReg.objects.get(admin=tech_admin)
-    customerdetails1 = Hire.objects.filter(status='Completed',tech_id=tech_reg)
-    context = {'customerdetails1': customerdetails1}
-    return render(request, 'tec/customer_list_app_Hire.html', context)
 
 def Search_Hire(request):
     tech_admin = request.user

@@ -6,7 +6,7 @@
    <div class="page-header">
       <div class="row">
          <div class="col-sm-12">
-            <h3 class="page-title">Welcome Tech {{ user.first_name }} {{ user.last_name }}!</h3>
+            <h3 class="page-title">Hi, {{ user.first_name }}!</h3>
             <ul class="breadcrumb">
                <li class="breadcrumb-item active">Dashboard</li>
             </ul>
@@ -38,7 +38,7 @@
                   </div>
                   <div class="db-info">
                      <h3>{{newaptcount}}</h3>
-                     <a href="{% url 'customernewhire' %}">
+                     <a href="{% url 'technewhire' %}">
                         <h6>New Hire</h6>
                      </a>
                   </div>
@@ -55,7 +55,7 @@
                   </div>
                   <div class="db-info">
                      <h3>{{appaptcount}}</h3>
-                     <a href="{% url 'customerapprovedhire' %}">
+                     <a href="{% url 'techapprovedhire' %}">
                         <h6>Approved Hire</h6>
                      </a>
                   </div>
@@ -72,7 +72,7 @@
                   </div>
                   <div class="db-info">
                      <h3>{{canaptcount}}</h3>
-                     <a href="{% url 'customercancelledhire' %}">
+                     <a href="{% url 'techcancelledhire' %}">
                         <h6>Cancelled Hire</h6>
                      </a>
                   </div>
@@ -89,7 +89,7 @@
                   </div>
                   <div class="db-info">
                      <h3>{{comaptcount}}</h3>
-                     <a href="{% url 'customerhirecompleted' %}">
+                     <a href="{% url 'completedhire' %}">
                         <h6>Completed Hire</h6>
                      </a>
                   </div>

@@ -47,11 +47,11 @@
           {% endif %}
           <div class="table-responsive">
             <table class="table table-hover table-center mb-0 datatable">
-              {% for i in customerdetails %}
-              <tr><label style="font-size: medium;text-align: center;">Hire Number: {{i.jirenumber}}</label></tr>
+              {% for i in tech_hire_details %}
+              <tr><label style="font-size: medium;text-align: center;">Hire Number: {{i.hirenumber}}</label></tr>
               <tr>
 
-                <th>Customer</th> Name</th>
+                <th>Customer Name</th>
                 <td>{{i.fullname}}</td>
                 <th>Customer Contact Number</th>
                 <td>{{i.mobilenumber}}</td>
@@ -65,7 +65,7 @@
               </tr>
               <tr>
 
-                <th>Date of Time</th>
+                <th>Time of Hire</th>
                 <td>{{i.time_of_hire}}</td>
                 <th>Message</th>
                 <td>{{i.additional_msg}}</td>
@@ -81,7 +81,7 @@
                 <td>{{ i.remark}}</td>{% endif %}
 
                 {% if i.status == '0' %}
-                <th>Staus</th>
+                <th>Status</th>
                 <td>Not Updatet Yet</td>
                 {% else %}
                 <th>Status</th>
@@ -90,19 +90,10 @@
 
               <tr>
                 {% if i.status == 'Completed' %}
-                <th>Described repair</th>
+                <th>Description</th>
                 <td>{{ i.description}}</td>
                 {% else %}
-                <th>Described repair</th>
-                <td>Not Described Yet</td> {% endif %}
-              </tr>
-              <tr>
-                {% if i.status == 'Completed' %}
-                <th>Recommended repair</th>
-                <td>{{ i.recommendedtest}}</td>
-                {% else %}
-                <th>Recommended repair</th>
-                <td>Not Recommended Yet</td> {% endif %}
+                {% endif %}
               </tr>
             </table>
             {% if i.status == '0' %}
@@ -125,10 +116,8 @@
                 <div class="modal-body">
                   <table class="table table-bordered table-hover data-tables">
 
-                    <form method="POST" action="{% url 'customer_hire_details_remark'%}">
+                    <form method="POST" action="{% url 'tech_hire_details_remark'%}">
                       {% csrf_token %}
-
-
 
                       <tr>
                         <th>Remark :</th>
@@ -136,7 +125,7 @@
                           <textarea name="remark" placeholder="Remark" rows="12" cols="14" class="form-control wd-450"
                             required="true"></textarea>
                         </td>
-                        <input type="text" value="{% for i in custoemrdetails %}{{i.id}}{% endfor %}" name="pat_id"
+                        <input type="text" value="{% for i in tech_hire_details %}{{i.id}}{% endfor %}" name="pat_id"
                           id="pat_id" class="form-control" required="" hidden>
                       </tr>
 

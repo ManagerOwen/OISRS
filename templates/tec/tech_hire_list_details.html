@@ -47,20 +47,20 @@
           {% endif %}
           <div class="table-responsive">
             <table class="table table-hover table-center mb-0 datatable">
-              {% for i in customerdetails %}
+              {% for i in clientdetails %}
               <tr><strong style="font-size: medium;text-align: center;">Hire Number: {{i.hirenumber}}</strong> <strong
                   style="padding-left: 600px;">Date: {{i.date_of_hire}}</strong></tr>
 
               <tr>
 
-                <th>Customer Name</th>
+                <th>Client Name</th>
                 <td>{{i.fullname}}</td>
-                <th>Customer Contact Number</th>
+                <th>Contact Number</th>
                 <td>{{i.mobilenumber}}</td>
               </tr>
               <tr>
 
-                <th>Customer Email</th>
+                <th>Email Address</th>
                 <td>{{i.email}}</td>
                 <th>Date of Hire</th>
                 <td>{{i.date_of_hire}}</td>
@@ -79,11 +79,11 @@
                 <td>Not Updatet Yet</td>
                 {% else %}
               <tr>
-                <th>tech Remark</th>
+                <th>Tech Remark</th>
                 <td>{{ i.remark}}</td>{% endif %}
 
                 {% if i.status == '0' %}
-                <th>Staus</th>
+                <th>Status</th>
                 <td>Not Updatet Yet</td>
                 {% else %}
                 <th>Status</th>
@@ -92,24 +92,22 @@
 
               <tr>
                 {% if i.status == 'Completed' %}
-                <th>Described repair</th>
+                <th>Describe repaired</th>
                 <td>{{ i.description}}</td>
                 {% else %}
-                <th>Described repair</th>
-                <td>Not Described Yet</td> {% endif %}
+                {% endif %}
               </tr>
               <tr>
                 {% if i.status == 'Completed' %}
-                <th>Recommended repair</th>
+                <th>Repaired</th>
                 <td>{{ i.recommendedrepair}}</td>
                 {% else %}
-                <th>Recommended repair</th>
-                <td>Not Recommended Yet</td> {% endif %}
+                {% endif %}
               </tr>
 
 
             </table>
-            {% if i.status == 'Approved' %}
+            {% if i.status %}
 
           </div>
           <p align="center" style="padding-top: 20px">
@@ -129,18 +127,15 @@
                 <div class="modal-body">
                   <table class="table table-bordered table-hover data-tables">
 
-                    <form method="POST" action="{% url 'customerhiredescription' %}">
+                    <form method="POST" action="{% url 'techhiredescription' %}">
                       {% csrf_token %}
-
-
-
                       <tr>
                         <th>Described repair :</th>
                         <td>
                           <textarea name="description" placeholder="Described repair" rows="5" cols="100"
                             class="form-control wd-850" required="true"></textarea>
                         </td>
-                        <input type="text" value="{% for i in customerdetails %}{{i.id}}{% endfor %}" name="pat_id"
+                        <input type="text" value="{% for i in clientdetails %}{{i.id}}{% endfor %}" name="pat_id"
                           id="pat_id" class="form-control" required="" hidden>
                       </tr>
                       <tr>

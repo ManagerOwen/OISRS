@@ -103,8 +103,7 @@
                                     required="true">
                                     <option selected>Choose Tech</option>
                                     {% for tech in techview %}
-                                    <option value="{{ tech.id }}">{{ tech.admin.first_name }} {{ tech.admin.last_name
-                                        }}({{ tech.specialization_id.sname }})</option>
+                                    <option value="{{ tech.id }}">{{ tech.specialization_id.sname }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -113,14 +112,14 @@
                                 <div class="date" id="date" data-target-input="nearest">
                                     <input type="date" class="form-control border-0 datetimepicker-input"
                                         placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker"
-                                        style="height: 55px;" name="date_of_appointment" required="true">
+                                        style="height: 55px;" name="date_of_hire" required="true">
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="time" id="time" data-target-input="nearest"></div>
                                 <input type="time" class="form-control border-0" placeholder="Choose Time"
                                     data-target="#time" data-toggle="datetimepicker" style="height: 55px;"
-                                    name="time_of_appointment" step="60" required="true">
+                                    name="time_of_hire" step="60" required="true">
                             </div>
                         </div>
 

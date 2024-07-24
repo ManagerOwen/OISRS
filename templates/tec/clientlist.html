@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
-
 <div class="content container-fluid">
-
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">Hires</h3>
+                <h3 class="page-title">All Clients</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">View Hire</li>
+                    <li class="breadcrumb-item"><a href="{% url 'tech_home' %}">Dashboard</a></li>
                 </ul>
             </div>
 
@@ -21,65 +17,31 @@
         <div class="col-sm-12">
             <div class="card card-table">
                 <div class="card-body">
-                    {% if messages %}
-                    {% for message in messages %}
-                    {% if message.tags == 'error' %}
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        {{message}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    {% if messages %}
-                    {% for message in messages %}
-                    {% if message.tags == 'success' %}
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        {{message}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                    {% endif %}
                     <div class="table-responsive">
                         <table class="table table-hover table-center mb-0 datatable">
                             <thead>
                                 <tr>
 
-                                    <th>Hire Number</th>
                                     <th>Client Name</th>
+                                    <th>Email Address</th>
                                     <th>Date of Hire</th>
                                     <th>Time of Hire</th>
-                                    <th>Creation Date</th>
-                                    <th>Status</th>
-                                    <th class="text-right">Action</th>
+                                    <th>Hire Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for i in customerdetails %}
+                                {% for i in clientdetails %}
                                 <tr>
 
-                                    <td>{{i.hirenumber}}</td>
                                     <td>{{i.fullname}}</td>
+                                    <td>{{i.email}}</td>
                                     <td>{{i.date_of_hire}}</td>
                                     <td>{{i.time_of_hire}}</td>
-                                    <td>{{i.created_at}}</td>
                                     {% if i.status == '0' %}
-                                    <td>Not Updated Yet</td>
+                                    <td>Pending</td>
                                     {% else %}
-                                    <td>{{ i.status}}</td>{% endif %}
-                                    <td class="text-right">
-                                        <div class="actions">
-                                            <a href="{% url 'techhirelist' i.id %}">
-                                                <i class="btn btn-primary btn-block">View</i>
-                                            </a>
-
-                                        </div>
-                                    </td>
+                                    <td>{{ i.status}}</td>
+                                    {% endif %}
                                 </tr> {% endfor %}
 
                             </tbody>

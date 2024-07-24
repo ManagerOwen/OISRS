@@ -7,9 +7,9 @@
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">Hires</h3>
+                <h3 class="page-title">New Hires</h3>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'tech_home' %}">Dashboard</a></li>
                     <li class="breadcrumb-item active">View Hire</li>
                 </ul>
             </div>
@@ -60,7 +60,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for i in customerdetails %}
+                                {% for i in clientdetails %}
                                 <tr>
 
                                     <td>{{i.hirenumber}}</td>
