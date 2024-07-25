@@ -91,15 +91,65 @@ def ViewTechHireList(request,id):
 
     return render(request,'admin/tech_hire_list.html',context)
 
+def New_Hire(request):
+    tech_admin = request.user
+    tech_reg = TechReg.objects.get(admin=tech_admin)
+    clientdetails = Hire.objects.filter(status='0',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'admin/new_hire.html', context)
+
+def Approved_Hire(request):
+    tech_admin = request.user
+    tech_reg = TechReg.objects.get(admin=tech_admin)
+    clientdetails = Hire.objects.filter(status='Approved',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'admin/approved_hire.html', context)
+
+def Cancelled_Hire(request):
+    tech_admin = request.user
+    tech_reg = TechReg.objects.get(admin=tech_admin)
+    clientdetails = Hire.objects.filter(status='Cancelled',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'admin/cancelled_hire.html', context)
+
+def All_Hire(request):
+    clientdetails = Hire.objects.all()
+    context = {'clientdetails': clientdetails}
+    return render(request, 'admin/all_hire.html', context)
+
+def Completed_Hire(request):
+    tech_admin = request.user
+    tech_reg = TechReg.objects.get(admin=tech_admin)
+    clientdetails = Hire.objects.filter(status='Completed',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'admin/completed_hire.html', context)
+
+def Client_List(request):
+    tech_admin = request.user
+    tech_reg = TechReg.objects.get(admin=tech_admin)
+    clientdetails = Hire.objects.filter(status='0',tech_id=tech_reg)
+    context = {'clientdetails': clientdetails}
+    return render(request, 'admin/client_list.html', context)
+
 def ViewCustomerDetails(request,id):
     customerdetails=Hire.objects.filter(id=id)
     context={'customerdetails':customerdetails
-
     }
-
     return render(request,'admin/customer_hire_details.html',context)
 
-def Search_Tech(request):
+def Search_Technician(request):
+    if request.method == "GET":
+        query = request.GET.get('query', '')
+        if query:
+            # Filter records where email or mobilenumber contains the query
+            searchdoc = TechReg.objects.filter(mobilenumber__icontains=query) | TechReg.objects.filter(admin__first_name__icontains=query) |TechReg.objects.filter(admin__last_name__icontains=query)
+            messages.info(request, "Search against " + query)
+            return render(request, 'admin/search-tech.html', {'searchdoc': searchdoc, 'query': query})
+        else:
+            print("No Record Found")
+            return render(request, 'admin/search-tech.html', {})
+
+def Search_Hire(request):
     if request.method == "GET":
         query = request.GET.get('query', '')
         if query:
@@ -114,9 +164,7 @@ def Search_Tech(request):
 def Tech_Between_Date_Report(request):
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
-
     tech = []
-
     if start_date and end_date:
         # Validate the date inputs
         try:

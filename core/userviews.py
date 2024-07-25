@@ -16,9 +16,6 @@ def Index(request):
     }
     return render(request, 'index.html',context)
 
-
-
-
 def create_hire(request):
     techview = TechReg.objects.all()
     page = Page.objects.all()

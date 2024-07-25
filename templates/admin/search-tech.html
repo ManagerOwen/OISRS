@@ -1,46 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-
-
-<div class="content container-fluid">
-
+<div class="content container-fluid mb-5">
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col">
-                <h3 class="page-title">Search tech</h3>
+                <h3 class="page-title">Search Technician</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Search tech</li>
                 </ul>
             </div>
-
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-12">
             <div class="card-block">
-                <h4 class="sub-title">Search tech </h4>
                 <form method="GET">
-
                     {% csrf_token %}
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Search(By Mobilenumber/Name)</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-12">
                             <input type="text" id="query" name="query" class="form-control" required="">
                         </div>
                     </div>
-
-
                     <button type="submit" class="btn btn-primary btn-user btn-block">Search</button>
                 </form>
-
             </div>
 
             <div class="card card-table">
                 <div class="card-body">
-
-
                     <div class="table-responsive">
                         <table class="table table-hover table-center mb-0 datatable">
                             <thead>
@@ -80,7 +68,6 @@
                             </thead>
                             <tbody>
                                 {% for i in searchdoc %}
-
                                 <tr>
                                     <td>{{i.id}}</td>
                                     <td>{{i.admin.first_name}} {{i.admin.last_name}}</td>
@@ -89,18 +76,13 @@
                                     <td>{{i.regdate_at}}</td>
                                     <td class="text-right">
                                         <div class="actions">
-                                            <a href="{% url 'viewtechdetails' i.id %}"
+                                            <a href="{% url 'view_tech_details' i.id %}"
                                                 class="btn btn-sm bg-success-light mr-2">
                                                 View
-                                            </a>
-                                            <a href="{% url 'viewtechappointmentlist' i.id %}"
-                                                class="btn btn-sm bg-danger-light">
-                                                Appointment List
                                             </a>
                                         </div>
                                     </td>
                                 </tr> {% endfor %}
-
 
                             </tbody>
                         </table>

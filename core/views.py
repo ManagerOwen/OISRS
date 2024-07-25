@@ -58,21 +58,15 @@ def PROFILE_UPDATE(request):
         email = request.POST.get('email')
         username = request.POST.get('username')
         print(profile_pic)
-        
-
         try:
             customuser = CustomUser.objects.get(id = request.user.id)
             customuser.first_name = first_name
             customuser.last_name = last_name
-            
-
-            
             if profile_pic !=None and profile_pic != "":
                customuser.profile_pic = profile_pic
             customuser.save()
             messages.success(request,"Your profile has been updated successfully")
             return redirect('profile')
-
         except:
             messages.error(request,"Your profile updation has been failed")
     return render(request, 'profile.html')

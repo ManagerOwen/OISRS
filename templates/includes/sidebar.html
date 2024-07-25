@@ -7,7 +7,6 @@
             <li class="menu-title">
                <span>Main Menu</span>
             </li>
-
             <li>
                <a href="{% url 'admin_home' %}"><i class="fas fa-file"></i> <span>Dashboard</span></a>
             </li>
@@ -20,14 +19,13 @@
                </ul>
             </li>
             <li>
-               <a href="{% url 'viewtechlist' %}"><i class="fas fa-users"></i> <span>Techn List</span></a>
+               <a href="{% url 'technician_list' %}"><i class="fas fa-users"></i> <span>Technician List</span></a>
             </li>
             <li>
-               <a href="{% url 'search_tech' %}"><i class="fas fa-search"></i> <span>Search Tech</span></a>
+               <a href="{% url 'search_technician' %}"><i class="fas fa-search"></i> <span>Search Tech</span></a>
             </li>
             <li>
-               <a href="{% url 'tech_between_date_report' %}"><i class="fa fa-file"></i> <span>Tech Reg
-                     Report</span></a>
+               <a href="{% url 'bd_hire_report' %}"><i class="fa fa-file"></i> <span>Tech Reg Report</span></a>
             </li>
             <li>
                <a href="{% url 'website_update' %}"><i class="fas fa-cog"></i> <span>Website Page</span></a>
@@ -55,10 +53,10 @@
                <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Hire</span> <span
                      class="menu-arrow"></span></a>
                <ul>
-                  <li><a href="{% url 'technewhire' %}">New Hire</a></li>
-                  <li><a href="{% url 'techapprovedhire' %}">Approved Hire</a></li>
-                  <li><a href="{% url 'techcancelledhire' %}">Cancelled Hire</a></li>
-                  <li><a href="{% url 'techallhire' %}">All Hire</a></li>
+                  <li><a href="{% url 'newhire' %}">New Hire</a></li>
+                  <li><a href="{% url 'approvedhire' %}">Approved Hire</a></li>
+                  <li><a href="{% url 'cancelledhire' %}">Cancelled Hire</a></li>
+                  <li><a href="{% url 'allhire' %}">All Hire</a></li>
 
                </ul>
             </li>

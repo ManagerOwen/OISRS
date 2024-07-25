@@ -50,7 +50,6 @@ def TECSIGNUP(request):
     context = {
         'specialization':specialization
     }
-
     return render(request,'tec/tecreg.html',context)
 
 @login_required(login_url='/')
