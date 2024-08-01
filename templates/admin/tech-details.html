@@ -1,9 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'admin/base.html' %}
 {% block content %}
-
-
 <div class="content container-fluid">
-
   <div class="page-header">
     <div class="row align-items-center">
       <div class="col">
@@ -47,7 +44,7 @@
           {% endif %}
           <div class="table-responsive">
             <table class="table table-hover table-center mb-0 datatable">
-              {% for i in Techlist1 %}
+              {% for i in techlist1 %}
 
               <tr>
 
@@ -72,7 +69,6 @@
                 <td>{{i.regdate_at}}</td>
               </tr>{% endfor %}
             </table>
-            <div class="btn btn-primary"><a href="{% url 'viewtechlist' %}">Back</a></div>
           </div>
         </div>
       </div>

@@ -3,9 +3,18 @@ from django.contrib.auth.decorators import login_required
 from tasapp.models import Specialization,TechReg,Hire,Page,CustomUser
 from django.contrib import messages
 from datetime import datetime
+from django.shortcuts import render,redirect,HttpResponse
+from tasapp.EmailBackEnd import EmailBackEnd
+from django.contrib.auth import  logout,login
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from tasapp.models import CustomUser
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 @login_required(login_url='/')
 def ADMINHOME(request):
+    user = request.user
     user = CustomUser.objects.all()
     tech_count = TechReg.objects.all().count
     specialization_count = Specialization.objects.all().count
@@ -71,22 +80,18 @@ def UPDATE_SPECIALIZATION_DETAILS(request):
 def TechList(request):
     techlist = TechReg.objects.all()
     context = {'techlist':techlist,
-
     }
     return render(request,'admin/tech-list.html',context)
 
 def ViewTechDetails(request,id):
     techlist1=TechReg.objects.filter(id=id)
     context={'techlist1':techlist1
-
     }
-
     return render(request,'admin/tech-details.html',context)
 
 def ViewTechHireList(request,id):
-    customerdetails=Hire.objects.filter(tech_id=id)
-    context={'customerdetails':customerdetails
-
+    hirelist=Hire.objects.filter(tech_id=id)
+    context={'hirelist':hirelist
     }
 
     return render(request,'admin/tech_hire_list.html',context)
@@ -207,3 +212,57 @@ def UPDATE_WEBSITE_DETAILS(request):
           return redirect('website_update')
     return render(request,'admin/website.html')
 
+login_required(login_url='/')
+def PROFILE(request):
+    user = CustomUser.objects.get(id = request.user.id)
+    context = {
+        "user":user,
+    }
+    return render(request,'admin/profile.html',context)
+
+@login_required(login_url = '/')
+def PROFILE_UPDATE(request):
+    if request.method == "POST":
+        profile_pic = request.FILES.get('profile_pic')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        print(profile_pic)
+        try:
+            customuser = CustomUser.objects.get(id = request.user.id)
+            customuser.first_name = first_name
+            customuser.last_name = last_name
+            if profile_pic !=None and profile_pic != "":
+               customuser.profile_pic = profile_pic
+            customuser.save()
+            messages.success(request,"Your profile has been updated successfully")
+            return redirect('profile')
+        except:
+            pass
+    return render(request, 'admin/profile.html')
+
+
+def CHANGE_PASSWORD(request):
+     context ={}
+     ch = User.objects.filter(id = request.user.id)
+     
+     if len(ch)>0:
+            data = User.objects.get(id = request.user.id)
+            context["data"]:data            
+     if request.method == "POST":        
+        current = request.POST["cpwd"]
+        new_pas = request.POST['npwd']
+        user = User.objects.get(id = request.user.id)
+        un = user.username
+        check = user.check_password(current)
+        if check == True:
+          user.set_password(new_pas)
+          user.save()
+          messages.success(request,'Password Change  Succeesfully!!!')
+          user = User.objects.get(username=un)
+          login(request,user)
+        else:
+          messages.success(request,'Current Password wrong!!!')
+          return redirect("change_password")
+     return render(request,'admin/change-password.html')

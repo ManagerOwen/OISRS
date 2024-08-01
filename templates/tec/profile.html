@@ -1,21 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'tec/base.html' %}
 {% block content %}
 
 
 <div class="content container-fluid">
-    {% if user.user_type == '1' %}
-    <div class="page-header">
-        <div class="row">
-            <div class="col">
-                <h3 class="page-title">Profile Details</h3>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Profile Details</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    {% else %}
     <div class="page-header">
         <div class="row">
             <div class="col">
@@ -26,7 +13,7 @@
                 </ul>
             </div>
         </div>
-    </div>{% endif %}
+    </div>
 
     <div class="row">
         <div class="col-lg-12">
@@ -59,7 +46,7 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
-                    <form method="POST" action="{% url 'profile_update' %}" enctype="multipart/form-data">
+                    <form method="POST" action="{% url 'tec_profile_update' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group row">
                             <label class="col-form-label col-md-2">Profile Pic</label>

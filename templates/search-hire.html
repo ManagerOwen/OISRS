@@ -27,7 +27,6 @@
                 <div class="card-block">
                     <h4 class="sub-title">Search Hire </h4>
                     <form method="GET">
-
                         {% csrf_token %}
                         <div class="form-group row">
                             <label class="col-sm-12 col-form-label">Search(By Fullname/Hire Number)</label>
@@ -35,20 +34,15 @@
                             <div class="col-sm-12">
                                 <input type="text" id="query" name="query" class="form-control"
                                     style="border: solid #000 1px;" required="">
-
                             </div>
                         </div>
-
-
                         <br>
                         <button type="submit" class="btn btn-primary btn-user btn-block">Search</button>
                     </form>
 
                 </div>
                 <br>
-
                 <div class="card card-table">
-
                     <div class="card-body">
                         {% if messages %}
                         {% for message in messages %}
@@ -103,7 +97,7 @@
                                         <td>{{ i.status}}</td>{% endif %}
                                         <td class="text-right">
                                             <div class="actions">
-                                                <a href="{% url 'viewhiredetails' i.id %}">
+                                                <a href="{% url 'user_hire_details' i.id %}">
                                                     <i class="btn btn-primary btn-block">View</i>
                                                 </a>
 
@@ -121,9 +115,6 @@
 
                                 {% endif %}
                             </table>
-
-
-
                         </div>
                     </div>
                 </div>

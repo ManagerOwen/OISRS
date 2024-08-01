@@ -88,14 +88,13 @@ def User_Search_Hire(request):
     # If the request method is not GET
     context = {'page': page}
     return render(request, 'search-hire.html', context)
+
 def View_Hire_Details(request,id):
     page = Page.objects.all()
-    customerdetails=Hire.objects.filter(id=id)
-    context={'customerdetails':customerdetails,
+    userhiredetails=Hire.objects.filter(id=id)
+    context={'userhiredetails':userhiredetails,
     'page': page
-
     }
-
     return render(request,'user_hire-details.html',context)
 
 

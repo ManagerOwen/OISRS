@@ -31,6 +31,10 @@ urlpatterns = [
     path('Admin/searchtechnician', adminviews.Search_Technician, name='search_technician'),
     path('Admin/website_update', adminviews.WEBSITE_UPDATE, name='website_update'),
     path('Admin/update_website_details', adminviews.UPDATE_WEBSITE_DETAILS, name='update_website_details'),
+    #profile path
+    path('Admin/profile', adminviews.PROFILE, name='admin_profile'),
+    path('Admin/profile/update', adminviews.PROFILE_UPDATE, name='admin_profile_update'),
+    path('Admin/password', adminviews.CHANGE_PASSWORD, name='admin_change_password'),
 
     # # This is Technician Panel
     path('dashboard/signup/', tecviews.TECSIGNUP, name='techSignup'),
@@ -48,17 +52,17 @@ urlpatterns = [
     path('dashboard/tech_hire_description', tecviews.Tech_Hire_Description, name='techhiredescription'),
     path('dashboard/search_hire', tecviews.Search_Hire, name='search_hire'),
     path('dashboard/tech_between_date_report', tecviews.Between_Date_Report, name='between_date_report'),
+    #profile path
+    path('dashboard/profile', tecviews.PROFILE, name='tec_profile'),
+    path('dashboard/profile/update', tecviews.PROFILE_UPDATE, name='tec_profile_update'),
+    path('dashboard/password', tecviews.CHANGE_PASSWORD, name='tec_change_password'),
 
     #This is User Panel
     path('userbase/', userviews.USERBASE, name='userbase'),
     path('', userviews.Index, name='index'),
     path('userhire/', userviews.create_hire, name='hire'),
-    path('User_SearchHire', userviews.User_Search_Hire, name='user_search_hire'),
-    path('ViewHireDetails/<str:id>/', userviews.View_Hire_Details, name='viewhiredetails'),
-    #profile path
-    path('Profile', views.PROFILE, name='profile'),
-    path('Profile/update', views.PROFILE_UPDATE, name='profile_update'),
-    path('Password', views.CHANGE_PASSWORD, name='change_password')
+    path('user_search_hire', userviews.User_Search_Hire, name='user_search_hire'),
+    path('view_hire_details/<str:id>/', userviews.View_Hire_Details, name='user_hire_details'),
     
 ]
 if settings.DEBUG:
