@@ -4,6 +4,7 @@ from django.contrib.auth import  logout,login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from tasapp.models import CustomUser
+from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 User = get_user_model()
 def BASE(request):
@@ -19,9 +20,9 @@ def doLogout(request):
 def doLogin(request):
     if request.method == 'POST':
         user = EmailBackEnd.authenticate(request,
-                                         username=request.POST.get('email'),
-                                         password=request.POST.get('password')
-                                         )
+          username=request.POST.get('email'),
+          password=request.POST.get('password')
+          )
         if user!=None:
             login(request,user)
             user_type = user.user_type
@@ -31,8 +32,6 @@ def doLogin(request):
                  return redirect('tech_home')
             elif user_type == '3':
                 return HttpResponse("This is User panel")
-            
-            
         else:
                 messages.error(request,'Email or Password is not valid')
                 return redirect('login')

@@ -7,6 +7,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from tasapp.EmailBackEnd import EmailBackEnd
 from django.contrib.auth import  logout,login
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from tasapp.models import CustomUser
 from django.contrib.auth import get_user_model
