@@ -73,13 +73,13 @@ def create_hire(request):
             f'Dear Applicant,\n\nYour hire request has been placed with the following details:\n\n'
             f'Full Name: {fullname}\n\n'
             f'Hire Details: {additional_msg}\n\n\n'
-            'OMIRS SYSTEMS',
+            'Admin: @OMIRS SYSTEMS',
             'no-reply@omirs.com',  # Sender's email
             [email],  # Email of the current admin in the loop
             fail_silently=False
         )
         # Display a success message
-        messages.success(request, f"Your Hire Request {hirenumber} Has Been Sent. We Will Contact You Soon")
+        messages.success(request, f"Your Hire Request number is: {hirenumber},  Has Been Sent. Please save this number somewhere, for tracking your hire progress... We Will Contact You Soon")
         return redirect('hire')
 
     context = {'techview': techview,
