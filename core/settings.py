@@ -127,7 +127,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'jakaowen17@gmail.com'
 
 # Email Host App Password
-EMAIL_HOST_PASSWORD = 'app password here'
+EMAIL_HOST_PASSWORD = 'tmas gslq iova ekgb'
 EMAIL_USE_TLS = True
 
 # Default email address to use for various automated correspondence from the site managers.

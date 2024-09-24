@@ -19,8 +19,9 @@ def Index(request):
 
 def create_hire(request):
     techview = TechReg.objects.all()
+    # Fetch all admins with their usernames and emails
+    admins = CustomUser.objects.filter(user_type='1')
     page = Page.objects.all()
-
     if request.method == "POST":
         hirenumber = random.randint(100000000, 999999999)
         fullname = request.POST.get('fullname')
@@ -55,8 +56,30 @@ def create_hire(request):
             tech_id=doc_instance,
             additional_msg=additional_msg
         )
+        # Loop through each admin and send a personalized email
+        for admin in admins:
+            send_mail(
+                f'New Hire Request With Number: {hirenumber}',
+                f'Hi {admin.username.capitalize()},\n\nA new hire request has been placed with the following details:\n\n'
+                f'FullName: {fullname}\nEmail: {email}\n\n'
+                f'Hire Details: {additional_msg}\n\n\n'
+                'OMIRS SYSTEMS',
+                'no-reply@omirs.com',  # Sender's email
+                [admin.email],  # Email of the current admin in the loop
+                fail_silently=False
+            )
+        send_mail(
+            f'New Hire Request With Number: {hirenumber} Submitted Successfully!',
+            f'Dear Applicant,\n\nYour hire request has been placed with the following details:\n\n'
+            f'Full Name: {fullname}\n\n'
+            f'Hire Details: {additional_msg}\n\n\n'
+            'OMIRS SYSTEMS',
+            'no-reply@omirs.com',  # Sender's email
+            [email],  # Email of the current admin in the loop
+            fail_silently=False
+        )
         # Display a success message
-        messages.success(request, "Your Hire Request Has Been Sent. We Will Contact You Soon")
+        messages.success(request, f"Your Hire Request {hirenumber} Has Been Sent. We Will Contact You Soon")
         return redirect('hire')
 
     context = {'techview': techview,
